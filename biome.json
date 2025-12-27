@@ -27,6 +27,13 @@
       "react": "recommended"
     }
   },
+  "javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"arrowParentheses": "asNeeded",
+			"semicolons": "asNeeded"
+		}
+	},
   "assist": {
     "actions": {
       "source": {
