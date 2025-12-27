@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'cursor-pointer transition-colors flex items-center gap-2 px-4 py-2 rounded-md font-medium',
+  'cursor-pointer transition-colors flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium',
   {
     variants: {
       variant: {
