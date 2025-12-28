@@ -8,6 +8,13 @@
       "when": 1766862787175,
       "tag": "0000_mushy_sersi",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1766933705343,
+      "tag": "0001_supreme_the_anarchist",
+      "breakpoints": true
     }
   ]
 }
