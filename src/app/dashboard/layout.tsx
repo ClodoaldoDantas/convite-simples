@@ -17,5 +17,7 @@ export default async function DashboardLayout({
     redirect('/sign-in')
   }
 
-  return <>{children}</>
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-16 font-sans">{children}</div>
+  )
 }
