@@ -1,44 +1,39 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Input } from '@/components/ui/input'
-import { createInvitation } from '../../actions'
-
-const schema = z.object({
-  title: z.string().min(1, 'O título é obrigatório'),
-  description: z.string().optional(),
-  date: z.string().min(1, 'A data é obrigatória'),
-  time: z.string().min(1, 'O horário é obrigatório'),
-  address: z.string().min(1, 'O endereço é obrigatório'),
-  occasionType: z.string().min(1, 'O tipo de ocasião é obrigatório'),
-})
-
-type AddInvitationFormData = z.infer<typeof schema>
+import {
+  type OccasionType,
+  OccasionTypeSelect,
+} from '../_components/occasion-type-select'
+import { createInvitation } from '../actions'
+import { type InvitationFormData, invitationFormSchema } from '../schema'
 
 export function AddInvitationForm() {
+  const [occasionType, setOccasionType] = useState<OccasionType>('birthday')
+
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm<AddInvitationFormData>({
-    resolver: zodResolver(schema),
+  } = useForm<InvitationFormData>({
+    resolver: zodResolver(invitationFormSchema),
     defaultValues: {
       title: '',
       description: '',
       date: '',
       time: '',
       address: '',
-      occasionType: '',
     },
   })
 
-  const handleNewInvitation = async (data: AddInvitationFormData) => {
-    const result = await createInvitation(data)
+  const handleNewInvitation = async (data: InvitationFormData) => {
+    const result = await createInvitation({ ...data, occasionType })
 
     if (result?.error) {
       toast.error(result.error)
@@ -47,6 +42,15 @@ export function AddInvitationForm() {
 
   return (
     <form onSubmit={handleSubmit(handleNewInvitation)} className="space-y-4">
+      <div className="flex flex-col gap-1.5">
+        <span className="font-medium text-zinc-900">Tipo de Ocasião</span>
+
+        <OccasionTypeSelect
+          value={occasionType}
+          onChange={value => setOccasionType(value)}
+        />
+      </div>
+
       <div className="flex flex-col gap-1.5">
         <label className="font-medium text-zinc-900" htmlFor="title">
           Título do convite
@@ -110,21 +114,6 @@ export function AddInvitationForm() {
         />
 
         <ErrorMessage error={errors.address} />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label className="font-medium text-zinc-900" htmlFor="occasionType">
-          Tipo de Ocasião
-        </label>
-
-        <Input
-          type="text"
-          id="occasionType"
-          placeholder="Ex: Aniversário, Casamento, Formatura"
-          {...register('occasionType')}
-        />
-
-        <ErrorMessage error={errors.occasionType} />
       </div>
 
       <div className="flex items-center justify-between">

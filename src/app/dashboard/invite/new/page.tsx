@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa6'
-import { AddInvitationForm } from './_components/add-invitation-form'
+import { AddInvitationForm } from '../_components/add-invitation-form'
 
 export default function NewInvitePage() {
   return (
