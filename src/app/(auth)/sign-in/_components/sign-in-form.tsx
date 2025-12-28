@@ -1,21 +1,26 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { FaEnvelopeOpenText } from 'react-icons/fa6'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Input } from '@/components/ui/input'
+import { authClient } from '@/lib/auth-client'
 
 const schema = z.object({
   email: z.email('Endereço de e-mail inválido'),
-  password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
+  password: z.string().min(8, 'A senha deve ter no mínimo 8 caracteres'),
 })
 
 type SignInFormData = z.infer<typeof schema>
 
 export function SignInForm() {
+  const router = useRouter()
+
   const {
     handleSubmit,
     register,
@@ -29,8 +34,27 @@ export function SignInForm() {
   })
 
   const handleSignIn = async (data: SignInFormData) => {
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    console.log(data)
+    await authClient.signIn.email(
+      {
+        email: data.email,
+        password: data.password,
+      },
+      {
+        onSuccess: () => {
+          router.push('/dashboard')
+        },
+        onError: ctx => {
+          if (ctx.error.code === 'INVALID_EMAIL_OR_PASSWORD') {
+            toast.error('Credenciais inválidas. Por favor, tente novamente.')
+            return
+          }
+
+          toast.error(
+            'Ocorreu um erro ao tentar entrar. Tente novamente mais tarde.',
+          )
+        },
+      },
+    )
   }
 
   return (

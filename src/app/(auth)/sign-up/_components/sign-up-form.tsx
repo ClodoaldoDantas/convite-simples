@@ -1,21 +1,24 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { FaEnvelopeOpenText } from 'react-icons/fa6'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Input } from '@/components/ui/input'
+import { authClient } from '@/lib/auth-client'
 
 const schema = z
   .object({
     name: z.string().min(3, 'O nome deve ter no mínimo 3 caracteres'),
     email: z.email('Endereço de e-mail inválido'),
-    password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
+    password: z.string().min(8, 'A senha deve ter no mínimo 8 caracteres'),
     confirmPassword: z
       .string()
-      .min(6, 'A confirmação de senha deve ter no mínimo 6 caracteres'),
+      .min(8, 'A confirmação de senha deve ter no mínimo 8 caracteres'),
   })
   .refine(data => data.password === data.confirmPassword, {
     message: 'As senhas não coincidem',
@@ -25,6 +28,8 @@ const schema = z
 type SignUpFormData = z.infer<typeof schema>
 
 export function SignUpForm() {
+  const router = useRouter()
+
   const {
     handleSubmit,
     register,
@@ -40,8 +45,30 @@ export function SignUpForm() {
   })
 
   const handleSignUp = async (data: SignUpFormData) => {
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    console.log(data)
+    await authClient.signUp.email(
+      {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      },
+      {
+        onSuccess: () => {
+          router.push('/dashboard')
+        },
+        onError: ctx => {
+          if (ctx.error.code === 'USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL') {
+            toast.error(
+              'Este e-mail já está em uso. Por favor, utilize outro e-mail.',
+            )
+            return
+          }
+
+          toast.error(
+            'Ocorreu um erro ao tentar cadastrar. Tente novamente mais tarde.',
+          )
+        },
+      },
+    )
   }
 
   return (

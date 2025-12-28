@@ -4,16 +4,21 @@ import type { ComponentProps } from 'react'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'cursor-pointer transition-colors flex items-center justify-center gap-2 px-4 py-2 rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed',
+  'cursor-pointer transition-colors flex items-center justify-center gap-2  rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
         default: 'bg-blue-600 text-white hover:bg-blue-700',
         outline: 'border border-zinc-500 text-zinc-700 hover:bg-zinc-100',
       },
+      size: {
+        sm: 'px-2.5 py-1.5 text-sm',
+        md: 'px-4 py-2',
+      },
     },
     defaultVariants: {
       variant: 'default',
+      size: 'md',
     },
   },
 )
@@ -25,6 +30,7 @@ type ButtonProps = ComponentProps<'button'> &
 
 export function Button({
   variant = 'default',
+  size = 'md',
   className,
   asChild = false,
   ...props
@@ -32,6 +38,9 @@ export function Button({
   const Comp = asChild ? Slot : 'button'
 
   return (
-    <Comp className={cn(buttonVariants({ variant, className }))} {...props} />
+    <Comp
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
   )
 }
