@@ -1,6 +1,6 @@
 'use server'
 
-import { eq } from 'drizzle-orm'
+import { asc, eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { ZodError, z } from 'zod'
@@ -186,6 +186,7 @@ export async function getUserInvitations() {
       })
       .from(invitation)
       .where(eq(invitation.userId, session.user.id))
+      .orderBy(asc(invitation.date))
 
     return {
       error: null,
