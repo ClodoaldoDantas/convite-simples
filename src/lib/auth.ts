@@ -2,6 +2,7 @@ import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { nextCookies } from 'better-auth/next-js'
 import { db } from '@/database'
+import { sendEmail } from './send-email'
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET!,
@@ -12,6 +13,13 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: false,
+    sendResetPassword: async data => {
+      await sendEmail({
+        email: data.user.email,
+        subject: 'Resetar sua senha',
+        body: `<p>Clique no link para resetar sua senha: <a href="${data.url}">${data.url}</a></p>`,
+      })
+    },
   },
   plugins: [nextCookies()],
 })

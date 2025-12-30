@@ -6,7 +6,7 @@ export default function SignInPage() {
     <>
       <SignInForm />
 
-      <p className="text-center mt-4 text-zinc-500">
+      <p className="text-center text-sm mt-4 text-zinc-500">
         Ainda não tem uma conta?{' '}
         <Link className="text-blue-600 hover:underline" href="/sign-up">
           Cadastre-se

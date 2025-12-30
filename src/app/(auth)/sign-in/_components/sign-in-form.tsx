@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -79,9 +80,18 @@ export function SignInForm() {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="font-medium text-zinc-900" htmlFor="password">
-          Senha
-        </label>
+        <div className="flex items-center justify-between">
+          <label className="font-medium text-zinc-900" htmlFor="password">
+            Senha
+          </label>
+
+          <Link
+            href="/forgot-password"
+            className="text-sm text-blue-600 hover:underline"
+          >
+            Esqueceu a senha?
+          </Link>
+        </div>
 
         <Input
           type="password"

@@ -6,7 +6,7 @@ export default function SignUpPage() {
     <>
       <SignUpForm />
 
-      <p className="text-center mt-4 text-zinc-500">
+      <p className="text-center text-sm mt-4 text-zinc-500">
         Já tem uma conta?{' '}
         <Link className="text-blue-600 hover:underline" href="/sign-in">
           Faça login

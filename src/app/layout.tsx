@@ -23,7 +23,14 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${outfit.variable} antialiased bg-gray-50`}>
         {children}
-        <Toaster position="top-center" />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              fontFamily: 'Outfit, sans-serif',
+            },
+          }}
+        />
       </body>
     </html>
   )
