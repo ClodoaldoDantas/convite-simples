@@ -3,12 +3,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { FaEnvelopeOpenText } from 'react-icons/fa6'
 import { z } from 'zod'
+import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Input } from '@/components/ui/input'
-
 import { authClient } from '@/lib/auth-client'
 
 const schema = z.object({
@@ -52,9 +51,7 @@ export function ForgotPasswordForm() {
       onSubmit={handleSubmit(handleSubmitPasswordReset)}
       className="space-y-4"
     >
-      <div className="flex items-center justify-center">
-        <FaEnvelopeOpenText className="size-10 text-orange-600" />
-      </div>
+      <Logo />
 
       <div className="flex flex-col gap-1.5">
         <label className="font-medium text-zinc-900" htmlFor="email">
