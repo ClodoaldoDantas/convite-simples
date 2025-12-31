@@ -1,6 +1,7 @@
 'use server'
 
 import { and, asc, eq } from 'drizzle-orm'
+import { revalidatePath } from 'next/cache'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { ZodError, z } from 'zod'
@@ -212,7 +213,7 @@ export async function deleteInvitation(invitationId: string) {
     }
   }
 
-  redirect('/dashboard')
+  revalidatePath('/dashboard')
 }
 
 export async function getUserInvitations() {

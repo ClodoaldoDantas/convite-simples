@@ -1,7 +1,7 @@
 'use client'
 
 import toast from 'react-hot-toast'
-import { updateInvitation } from '../actions'
+import { updateInvitation } from '../../actions'
 import { InvitationForm, type InvitationPayload } from './invitation-form'
 import type { OccasionType } from './occasion-type-select'
 

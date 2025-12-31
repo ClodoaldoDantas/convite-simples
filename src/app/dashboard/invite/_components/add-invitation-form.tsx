@@ -1,7 +1,7 @@
 'use client'
 
 import toast from 'react-hot-toast'
-import { createInvitation } from '../actions'
+import { createInvitation } from '../../actions'
 import { InvitationForm, type InvitationPayload } from './invitation-form'
 
 export function AddInvitationForm() {

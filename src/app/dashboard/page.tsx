@@ -3,7 +3,7 @@ import { FaCircleExclamation, FaCircleInfo, FaPlus } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
 import { InvitationListItem } from './_components/invitation-list-item'
 import { SignOutButton } from './_components/sign-out-button'
-import { getUserInvitations } from './invite/actions'
+import { getUserInvitations } from './actions'
 
 export default async function DashboardPage() {
   const { data: invitations, error } = await getUserInvitations()

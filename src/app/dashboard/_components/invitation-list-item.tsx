@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { FaCalendar, FaEye, FaPencil, FaTrash } from 'react-icons/fa6'
+import { FaCalendar, FaEye, FaPencil } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
 import { formatDate } from '@/utils/date'
+import { DeleteInvitationButton } from './delete-invitation-button'
 
 interface InvitationListItemProps {
   invitation: {
@@ -43,14 +44,7 @@ export function InvitationListItem({ invitation }: InvitationListItemProps) {
           </Link>
         </Button>
 
-        <Button
-          className="border-red-500 text-red-700 hover:bg-red-50"
-          variant="outline"
-          size="sm"
-        >
-          <FaTrash />
-          Excluir
-        </Button>
+        <DeleteInvitationButton invitationId={invitation.id} />
       </div>
     </div>
   )
