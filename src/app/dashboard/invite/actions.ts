@@ -1,6 +1,6 @@
 'use server'
 
-import { asc, eq } from 'drizzle-orm'
+import { and, asc, eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { ZodError, z } from 'zod'
@@ -10,7 +10,7 @@ import { auth } from '@/lib/auth'
 
 const invitationBodySchema = z.object({
   title: z.string().min(1, 'O título é obrigatório'),
-  description: z.string().optional(),
+  description: z.string().nullable(),
   date: z.string().min(1, 'A data é obrigatória'),
   time: z.string().min(1, 'O horário é obrigatório'),
   address: z.string().min(1, 'O endereço é obrigatório'),
@@ -55,6 +55,57 @@ export async function createInvitation(data: InvitationData) {
   }
 
   redirect('/dashboard')
+}
+
+export async function getInvitationById(invitationId: string) {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    })
+
+    if (!session?.user) {
+      return {
+        error: 'Você precisa estar autenticado',
+        data: null,
+      }
+    }
+
+    const result = await db
+      .select({
+        id: invitation.id,
+        title: invitation.title,
+        description: invitation.description,
+        date: invitation.date,
+        time: invitation.time,
+        address: invitation.address,
+        occasionType: invitation.occasionType,
+      })
+      .from(invitation)
+      .where(
+        and(
+          eq(invitation.id, invitationId),
+          eq(invitation.userId, session.user.id),
+        ),
+      )
+      .limit(1)
+
+    if (!result.length) {
+      return {
+        error: 'Convite não encontrado',
+        data: null,
+      }
+    }
+
+    return {
+      error: null,
+      data: result[0],
+    }
+  } catch (_error) {
+    return {
+      error: 'Erro ao buscar o convite. Tente novamente mais tarde.',
+      data: null,
+    }
+  }
 }
 
 export async function updateInvitation(
