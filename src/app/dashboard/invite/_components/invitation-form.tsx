@@ -7,10 +7,8 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { ErrorMessage } from '@/components/ui/error-message'
 import { Input } from '@/components/ui/input'
-import {
-  type OccasionType,
-  OccasionTypeSelect,
-} from '../_components/occasion-type-select'
+import { OccasionTypeSelect } from '../_components/occasion-type-select'
+import type { OccasionType } from '../_constants/occasion-types'
 
 export const invitationFormSchema = z.object({
   title: z.string().min(1, 'O título é obrigatório'),

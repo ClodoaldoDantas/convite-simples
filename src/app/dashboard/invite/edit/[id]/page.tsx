@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { unauthorized } from 'next/navigation'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { getInvitationById } from '../../../actions'
 import { EditInvitationForm } from '../../_components/edit-invitation-form'
-
-// import { AddInvitationForm } from '../_components/add-invitation-form'
 
 type EditInvitePageProps = {
   params: Promise<{ id: string }>
@@ -16,7 +14,7 @@ export default async function EditInvitePage({ params }: EditInvitePageProps) {
   const { data, error } = await getInvitationById(id)
 
   if (error || !data) {
-    notFound()
+    unauthorized()
   }
 
   return (

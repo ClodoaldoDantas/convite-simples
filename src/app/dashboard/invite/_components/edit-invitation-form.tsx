@@ -2,8 +2,8 @@
 
 import toast from 'react-hot-toast'
 import { updateInvitation } from '../../actions'
+import type { OccasionType } from '../_constants/occasion-types'
 import { InvitationForm, type InvitationPayload } from './invitation-form'
-import type { OccasionType } from './occasion-type-select'
 
 type EditInvitationFormProps = {
   invitation: {

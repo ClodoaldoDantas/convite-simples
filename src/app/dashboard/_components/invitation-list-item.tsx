@@ -1,8 +1,9 @@
 import Link from 'next/link'
-import { FaCalendar, FaEye, FaPencil } from 'react-icons/fa6'
+import { FaCalendar, FaPencil } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
 import { formatDate } from '@/utils/date'
 import { DeleteInvitationButton } from './delete-invitation-button'
+import { ShareInviteButton } from './share-invite-button'
 
 interface InvitationListItemProps {
   invitation: {
@@ -30,12 +31,7 @@ export function InvitationListItem({ invitation }: InvitationListItemProps) {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button asChild variant="outline" size="sm">
-          <Link href={`/invitation/${invitation.id}`}>
-            <FaEye />
-            Visualizar
-          </Link>
-        </Button>
+        <ShareInviteButton invitationId={invitation.id} />
 
         <Button asChild variant="outline" size="sm">
           <Link href={`/dashboard/invite/edit/${invitation.id}`}>
