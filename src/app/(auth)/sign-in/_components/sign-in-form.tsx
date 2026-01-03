@@ -50,6 +50,13 @@ export function SignInForm() {
             return
           }
 
+          if (ctx.error.status === 403) {
+            toast.error(
+              'Por favor, verifique seu e-mail para ativar sua conta.',
+            )
+            return
+          }
+
           toast.error(
             'Ocorreu um erro ao tentar entrar. Tente novamente mais tarde.',
           )

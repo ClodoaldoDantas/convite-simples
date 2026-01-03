@@ -1,7 +1,6 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
@@ -28,8 +27,6 @@ const schema = z
 type SignUpFormData = z.infer<typeof schema>
 
 export function SignUpForm() {
-  const router = useRouter()
-
   const {
     handleSubmit,
     register,
@@ -53,7 +50,9 @@ export function SignUpForm() {
       },
       {
         onSuccess: () => {
-          router.push('/dashboard')
+          toast.success(
+            'Por favor, verifique seu e-mail para confirmar seu cadastro.',
+          )
         },
         onError: ctx => {
           if (ctx.error.code === 'USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL') {

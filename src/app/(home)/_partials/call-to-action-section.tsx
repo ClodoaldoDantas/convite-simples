@@ -1,7 +1,13 @@
+import { headers } from 'next/headers'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { auth } from '@/lib/auth'
 
-export function CallToActionSection() {
+export async function CallToActionSection() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
   return (
     <section className="py-16 bg-zinc-800 text-white">
       <div className="container mx-auto px-4 text-center flex flex-col items-center">
@@ -13,9 +19,15 @@ export function CallToActionSection() {
           É grátis, rápido e fácil. Comece agora mesmo!
         </p>
 
-        <Button asChild className="bg-white text-zinc-900 hover:bg-zinc-200">
-          <Link href="/sign-up">Comece agora, é grátis</Link>
-        </Button>
+        {session ? (
+          <Button asChild className="bg-white text-zinc-900 hover:bg-zinc-200">
+            <Link href="/dashboard/invite/new">Criar um convite agora</Link>
+          </Button>
+        ) : (
+          <Button asChild className="bg-white text-zinc-900 hover:bg-zinc-200">
+            <Link href="/sign-up">Comece agora, é grátis</Link>
+          </Button>
+        )}
       </div>
     </section>
   )

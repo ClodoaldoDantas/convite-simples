@@ -10,9 +10,20 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: 'sqlite',
   }),
+  emailVerification: {
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendEmail({
+        email: user.email,
+        subject: 'Verifique seu email',
+        body: `<p>Por favor, verifique seu email: <a href="${url}">${url}</a></p>`,
+      })
+    },
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+  },
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: false,
+    requireEmailVerification: true,
     sendResetPassword: async data => {
       await sendEmail({
         email: data.user.email,
