@@ -17,7 +17,7 @@ export const auth = betterAuth({
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
       await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
+        from: 'Convite Simples <no-reply@mail.convite-simples.com.br>',
         to: [user.email],
         subject: 'Verifique seu email',
         react: AccountConfirmationEmail({
@@ -34,7 +34,7 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     sendResetPassword: async data => {
       await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
+        from: 'Convite Simples <no-reply@mail.convite-simples.com.br>',
         to: [data.user.email],
         subject: 'Redefinição de senha',
         react: ResetPasswordEmail({
