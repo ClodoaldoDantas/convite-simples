@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import {
+  FaArrowLeft,
   FaEnvelopeOpen,
   FaRegCalendar,
   FaRegClock,
@@ -11,7 +13,17 @@ export default function InviteDemoPage() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <main className="min-h-dvh w-full flex items-center justify-center font-sans px-4">
+    <main className="min-h-dvh w-full flex flex-col items-center gap-4 justify-center font-sans px-4">
+      <nav className="max-w-lg w-full">
+        <Link
+          className="flex items-center gap-2 text-zinc-900 hover:text-blue-600 transition-colors"
+          href="/"
+        >
+          <FaArrowLeft />
+          Voltar para Página Inicial
+        </Link>
+      </nav>
+
       <div className="max-w-lg w-full p-4 md:p-6 bg-white border border-zinc-300 rounded-md">
         <header className="text-center flex flex-col">
           <span role="img" className="text-5xl mb-4">
