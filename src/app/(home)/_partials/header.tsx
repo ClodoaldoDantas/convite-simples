@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button'
 
 export function Header() {
   return (
-    <header className="container mx-auto p-4 flex items-center justify-between">
+    <header className="container mx-auto p-4 flex items-center justify-center md:justify-between">
       <Logo />
 
-      <nav className="flex items-center gap-2">
+      <nav className="hidden md:flex items-center gap-2">
         <Button asChild variant="outline" size="sm">
           <Link href="/sign-in">
             <FaArrowRightFromBracket />

@@ -27,8 +27,8 @@ export default async function InvitePage({ params }: InvitePageProps) {
   }
 
   return (
-    <main className="min-h-dvh w-full flex items-center justify-center font-sans">
-      <div className="max-w-lg w-full p-6 bg-white border border-zinc-300 rounded-md">
+    <main className="min-h-dvh w-full flex items-center justify-center font-sans px-4">
+      <div className="max-w-lg w-full p-4 md:p-6 bg-white border border-zinc-300 rounded-md">
         <header className="text-center flex flex-col">
           <span role="img" className="text-5xl mb-4">
             {occasionTypes[data.occasionType as OccasionType]?.icon}
@@ -38,7 +38,10 @@ export default async function InvitePage({ params }: InvitePageProps) {
             Convite Especial
           </span>
 
-          <h1 className="text-3xl text-zinc-900 font-semibold">{data.title}</h1>
+          <h1 className="text-2xl md:text-3xl text-zinc-900 font-semibold">
+            {data.title}
+          </h1>
+
           <p className="text-zinc-500 mt-2">{data.description}</p>
         </header>
 

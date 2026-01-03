@@ -16,7 +16,7 @@ interface InvitationListItemProps {
 
 export function InvitationListItem({ invitation }: InvitationListItemProps) {
   return (
-    <div className="p-5 bg-white border border-zinc-300 rounded-md h-full flex items-center justify-between">
+    <div className="p-5 bg-white border border-zinc-300 rounded-md h-full flex flex-col gap-4 md:flex-row md:items-center justify-between">
       <div className="flex-1">
         <h3 className="text-lg font-semibold text-zinc-900 mb-1">
           {invitation.title}
@@ -30,7 +30,7 @@ export function InvitationListItem({ invitation }: InvitationListItemProps) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <ShareInviteButton invitationId={invitation.id} />
 
         <Button asChild variant="outline" size="sm">

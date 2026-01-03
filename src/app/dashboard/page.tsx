@@ -10,7 +10,7 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <header className="flex items-center justify-between">
+      <header className="flex flex-wrap gap-4 items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-zinc-900">
             Meus Convites

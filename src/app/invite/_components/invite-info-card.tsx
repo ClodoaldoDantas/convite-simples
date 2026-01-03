@@ -13,7 +13,7 @@ export function InviteInfoCard({
 }: InviteInfoCardProps) {
   return (
     <li className="p-4 w-full bg-zinc-100 rounded-lg flex items-center gap-5">
-      <div className="h-12 w-12 rounded-lg bg-zinc-300 flex items-center justify-center">
+      <div className="shrink-0 h-12 w-12 rounded-lg bg-zinc-300 flex items-center justify-center">
         <Icon className="size-6 text-zinc-700" />
       </div>
 

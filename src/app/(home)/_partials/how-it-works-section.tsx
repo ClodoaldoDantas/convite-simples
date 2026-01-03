@@ -1,5 +1,20 @@
 import Image from 'next/image'
 
+const steps = [
+  {
+    title: 'Escolha o tema',
+    description: 'Selecione o tema do evento',
+  },
+  {
+    title: 'Personalize',
+    description: 'Adicione os detalhes',
+  },
+  {
+    title: 'Compartilhe',
+    description: 'Envie para os convidados',
+  },
+]
+
 export function HowItWorksSection() {
   return (
     <section className="py-20 bg-zinc-100">
@@ -21,42 +36,23 @@ export function HowItWorksSection() {
             height={400}
           />
 
-          <ul className="grid grid-cols-3 gap-4 max-w-5xl mx-auto">
-            <li className="bg-white min-w-75 border border-zinc-200 p-6 rounded-md">
-              <div className="size-12 bg-zinc-200 flex items-center justify-center rounded-md mb-4">
-                <span className="font-semibold text-lg">1</span>
-              </div>
+          <ul className="grid gap-4 md:grid-cols-3 md:max-w-5xl md:mx-auto w-full">
+            {steps.map((step, index) => (
+              <li
+                className="bg-white border border-zinc-200 p-6 rounded-md"
+                key={step.title}
+              >
+                <div className="size-12 bg-zinc-200 flex items-center justify-center rounded-md mb-4">
+                  <span className="font-semibold text-lg">{index + 1}</span>
+                </div>
 
-              <h3 className="text-xl text-zinc-900 font-semibold mb-0.5">
-                Escolha o tema
-              </h3>
+                <h3 className="text-xl text-zinc-900 font-semibold mb-0.5">
+                  {step.title}
+                </h3>
 
-              <p className="text-zinc-500">Selecione o tema do evento</p>
-            </li>
-
-            <li className="bg-white min-w-75 border border-zinc-200 p-6 rounded-md">
-              <div className="size-12 bg-zinc-200 flex items-center justify-center rounded-md mb-4">
-                <span className="font-semibold text-lg">2</span>
-              </div>
-
-              <h3 className="text-xl text-zinc-900 font-semibold mb-0.5">
-                Personalize
-              </h3>
-
-              <p className="text-zinc-500">Adicione os detalhes</p>
-            </li>
-
-            <li className="bg-white min-w-75 border border-zinc-200 p-6 rounded-md">
-              <div className="size-12 bg-zinc-200 flex items-center justify-center rounded-md mb-4">
-                <span className="font-semibold text-lg">3</span>
-              </div>
-
-              <h3 className="text-xl text-zinc-900 font-semibold mb-0.5">
-                Compartilhe
-              </h3>
-
-              <p className="text-zinc-500">Envie para os convidados</p>
-            </li>
+                <p className="text-zinc-500">{step.description}</p>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
