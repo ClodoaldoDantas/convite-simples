@@ -1,8 +1,12 @@
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { nextCookies } from 'better-auth/next-js'
+import { Resend } from 'resend'
+import { AccountConfirmationEmail } from '@/components/emails/account-confirmation-email'
+import { ResetPasswordEmail } from '@/components/emails/reset-password-email'
 import { db } from '@/database'
-import { sendEmail } from './send-email'
+
+const resend = new Resend(process.env.RESEND_API_KEY!)
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET!,
@@ -12,10 +16,14 @@ export const auth = betterAuth({
   }),
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
-      await sendEmail({
-        email: user.email,
+      await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: [user.email],
         subject: 'Verifique seu email',
-        body: `<p>Por favor, verifique seu email: <a href="${url}">${url}</a></p>`,
+        react: AccountConfirmationEmail({
+          userEmail: user.email,
+          confirmationUrl: url,
+        }),
       })
     },
     sendOnSignUp: true,
@@ -25,10 +33,14 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
     sendResetPassword: async data => {
-      await sendEmail({
-        email: data.user.email,
-        subject: 'Resetar sua senha',
-        body: `<p>Clique no link para resetar sua senha: <a href="${data.url}">${data.url}</a></p>`,
+      await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: [data.user.email],
+        subject: 'Redefinição de senha',
+        react: ResetPasswordEmail({
+          userEmail: data.user.email,
+          resetLink: data.url,
+        }),
       })
     },
   },
