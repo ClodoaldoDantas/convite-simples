@@ -10,7 +10,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'Chega Mais',
+  title: 'Convite Simples',
   description: 'Crie seus convites de forma fácil e rápida!',
 }
 

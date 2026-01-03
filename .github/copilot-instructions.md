@@ -1,4 +1,4 @@
-# Chega Mais - Copilot Instructions
+# Convite Simples - Copilot Instructions
 
 ## Architecture Overview
 
