@@ -22,7 +22,7 @@ export function HeroSection() {
           </Button>
 
           <Button asChild variant="outline">
-            <Link href="/dashboard/invite/new">
+            <Link href="/invite/demo">
               <FaPlay />
               Veja um exemplo
             </Link>
