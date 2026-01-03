@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import onboardingImage from '@/assets/onboarding.svg'
 
 const steps = [
   {
@@ -30,7 +31,7 @@ export function HowItWorksSection() {
 
         <div className="flex flex-col items-center gap-8">
           <Image
-            src="/onboarding.svg"
+            src={onboardingImage}
             alt="Ilustração de um monitor exibindo o processo de criação de convites"
             width={400}
             height={400}

@@ -1,9 +1,10 @@
-import { FaEnvelopeOpenText } from 'react-icons/fa6'
+import Image from 'next/image'
+import logoImg from '@/assets/logo.svg'
 
 export function Logo() {
   return (
     <div className="flex items-center justify-center">
-      <FaEnvelopeOpenText className="size-10 text-orange-600" />
+      <Image src={logoImg} alt="Logo" width={48} height={48} quality={100} />
     </div>
   )
 }
