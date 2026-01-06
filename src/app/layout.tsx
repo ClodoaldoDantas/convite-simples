@@ -11,7 +11,21 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: 'Convite Simples',
-  description: 'Crie seus convites de forma fácil e rápida!',
+  description: 'Crie convites de forma simples e rápida',
+  keywords: [
+    'convites',
+    'convite digital',
+    'criar convites',
+    'convite online',
+    'design de convites',
+    'eventos',
+  ],
+  authors: [
+    {
+      name: 'Clodoaldo Dantas',
+      url: 'https://clodoaldo.dev/',
+    },
+  ],
 }
 
 export default function RootLayout({
