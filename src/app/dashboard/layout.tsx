@@ -1,6 +1,5 @@
-import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { auth } from '@/lib/auth'
+import { verifySession } from '@/lib/session'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
@@ -9,9 +8,7 @@ type DashboardLayoutProps = {
 export default async function DashboardLayout({
   children,
 }: DashboardLayoutProps) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  })
+  const session = await verifySession()
 
   if (!session) {
     redirect('/sign-in')

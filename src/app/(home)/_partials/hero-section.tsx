@@ -1,14 +1,8 @@
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import { FaPlay } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
-import { auth } from '@/lib/auth'
 
 export async function HeroSection() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  })
-
   return (
     <section className="py-32 bg-zinc-100">
       <div className="container mx-auto px-4 text-center">
@@ -23,13 +17,7 @@ export async function HeroSection() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
-          {!session && (
-            <Button asChild>
-              <Link href="/sign-up">Comece agora, é grátis</Link>
-            </Button>
-          )}
-
-          <Button asChild variant="outline">
+          <Button asChild>
             <Link href="/invite/demo">
               <FaPlay />
               Veja um exemplo

@@ -1,12 +1,9 @@
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { auth } from '@/lib/auth'
+import { verifySession } from '@/lib/session'
 
 export async function CallToActionSection() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  })
+  const session = await verifySession()
 
   return (
     <section className="py-16 bg-zinc-800 text-white">

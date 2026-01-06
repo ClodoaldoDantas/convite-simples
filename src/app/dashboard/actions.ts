@@ -2,12 +2,11 @@
 
 import { and, asc, eq } from 'drizzle-orm'
 import { revalidatePath } from 'next/cache'
-import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { ZodError, z } from 'zod'
 import { db } from '@/database'
 import { invitation } from '@/database/schema'
-import { auth } from '@/lib/auth'
+import { verifySession } from '@/lib/session'
 
 const invitationBodySchema = z.object({
   title: z.string().min(1, 'O título é obrigatório'),
@@ -22,9 +21,7 @@ type InvitationData = z.infer<typeof invitationBodySchema>
 
 export async function createInvitation(data: InvitationData) {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
+    const session = await verifySession()
 
     if (!session?.user) {
       return {
@@ -60,9 +57,7 @@ export async function createInvitation(data: InvitationData) {
 
 export async function getInvitationById(invitationId: string) {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
+    const session = await verifySession()
 
     if (!session?.user) {
       return {
@@ -114,9 +109,7 @@ export async function updateInvitation(
   data: InvitationData,
 ) {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
+    const session = await verifySession()
 
     if (!session?.user) {
       return {
@@ -175,9 +168,7 @@ export async function updateInvitation(
 
 export async function deleteInvitation(invitationId: string) {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
+    const session = await verifySession()
 
     if (!session?.user) {
       return {
@@ -218,9 +209,7 @@ export async function deleteInvitation(invitationId: string) {
 
 export async function getUserInvitations() {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    })
+    const session = await verifySession()
 
     if (!session?.user) {
       return {
