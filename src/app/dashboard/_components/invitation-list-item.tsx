@@ -31,7 +31,10 @@ export function InvitationListItem({ invitation }: InvitationListItemProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <ShareInviteButton invitationId={invitation.id} />
+        <ShareInviteButton
+          invitationTitle={invitation.title}
+          invitationId={invitation.id}
+        />
 
         <Button asChild variant="outline" size="sm">
           <Link href={`/dashboard/invite/edit/${invitation.id}`}>
