@@ -7,7 +7,7 @@ export const occasionTypes = {
   business_events: { icon: '🏢', label: 'Eventos Empresariais' },
   christmas: { icon: '🎄', label: 'Natal' },
   new_year: { icon: '🎉', label: 'Ano Novo' },
-  other: { icon: '❓', label: 'Outro' },
+  other: { icon: '🎊', label: 'Outro' },
 }
 
 export type OccasionType = keyof typeof occasionTypes
