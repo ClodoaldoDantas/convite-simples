@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { Divider } from '@/components/divider'
+import { SignInWithGoogle } from '../_components/sign-in-with-google'
 import { SignUpForm } from './_components/sign-up-form'
 
 export default function SignUpPage() {
@@ -12,6 +14,10 @@ export default function SignUpPage() {
           Faça login
         </Link>
       </p>
+
+      <Divider className="w-full">ou</Divider>
+
+      <SignInWithGoogle />
     </>
   )
 }
