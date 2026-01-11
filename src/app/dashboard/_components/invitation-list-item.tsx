@@ -2,6 +2,10 @@ import Link from 'next/link'
 import { FaCalendar, FaPencil } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
 import { formatDate } from '@/utils/date'
+import {
+  type OccasionType,
+  occasionTypes,
+} from '../invite/_constants/occasion-types'
 import { DeleteInvitationButton } from './delete-invitation-button'
 import { ShareInviteButton } from './share-invite-button'
 
@@ -11,15 +15,18 @@ interface InvitationListItemProps {
     title: string
     date: string
     time: string
+    occasionType: string
   }
 }
 
 export function InvitationListItem({ invitation }: InvitationListItemProps) {
+  const icon = occasionTypes[invitation.occasionType as OccasionType].icon
+
   return (
     <div className="p-5 bg-white border border-zinc-300 rounded-md h-full flex flex-col gap-4 md:flex-row md:items-center justify-between">
       <div className="flex-1">
         <h3 className="text-lg font-semibold text-zinc-900 mb-1">
-          {invitation.title}
+          {icon} {invitation.title}
         </h3>
 
         <div className="flex items-center text-zinc-600 gap-2">

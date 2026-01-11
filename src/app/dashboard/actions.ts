@@ -224,6 +224,7 @@ export async function getUserInvitations() {
         title: invitation.title,
         date: invitation.date,
         time: invitation.time,
+        occasionType: invitation.occasionType,
       })
       .from(invitation)
       .where(eq(invitation.userId, session.user.id))
