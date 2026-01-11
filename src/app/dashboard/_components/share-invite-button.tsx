@@ -26,9 +26,13 @@ export function ShareInviteButton({
   }
 
   return (
-    <Button variant="outline" size="sm" onClick={handleShareInvite}>
-      <FaShareNodes />
-      Compartilhar
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={handleShareInvite}
+      aria-label="Compartilhar convite"
+    >
+      <FaShareNodes className="size-4" />
     </Button>
   )
 }

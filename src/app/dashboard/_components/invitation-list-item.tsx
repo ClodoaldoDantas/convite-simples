@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FaCalendar, FaPencil } from 'react-icons/fa6'
+import { FaCalendar, FaEye, FaPencil } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
 import { formatDate } from '@/utils/date'
 import {
@@ -38,15 +38,23 @@ export function InvitationListItem({ invitation }: InvitationListItemProps) {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
+        <Button asChild variant="outline" size="icon">
+          <Link href={`/invite/${invitation.id}`} aria-label="Ver convite">
+            <FaEye className="size-4" />
+          </Link>
+        </Button>
+
         <ShareInviteButton
           invitationTitle={invitation.title}
           invitationId={invitation.id}
         />
 
-        <Button asChild variant="outline" size="sm">
-          <Link href={`/dashboard/invite/edit/${invitation.id}`}>
-            <FaPencil />
-            Editar
+        <Button asChild variant="outline" size="icon">
+          <Link
+            href={`/dashboard/invite/edit/${invitation.id}`}
+            aria-label="Editar convite"
+          >
+            <FaPencil className="size-4" />
           </Link>
         </Button>
 

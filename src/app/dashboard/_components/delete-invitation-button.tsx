@@ -31,10 +31,10 @@ export function DeleteInvitationButton({
       onClick={handleDelete}
       className="border-red-500 text-red-700 hover:bg-red-50"
       variant="outline"
-      size="sm"
+      size="icon"
+      aria-label="Excluir convite"
     >
-      <FaTrash />
-      Excluir
+      <FaTrash className="size-4" />
     </Button>
   )
 }

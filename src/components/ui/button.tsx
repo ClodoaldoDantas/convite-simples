@@ -15,6 +15,7 @@ const buttonVariants = cva(
       size: {
         sm: 'px-2.5 py-1.5 text-sm',
         md: 'px-4 py-2',
+        icon: 'size-10 flex items-center justify-center',
       },
     },
     defaultVariants: {
