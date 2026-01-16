@@ -1,4 +1,5 @@
 import { CallToActionSection } from './_partials/call-to-action-section'
+import { FaqSection } from './_partials/faq-section'
 import { FeaturesSection } from './_partials/features-section'
 import { Footer } from './_partials/footer'
 import { Header } from './_partials/header'
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />
+      <FaqSection />
       <CallToActionSection />
       <Footer />
     </div>

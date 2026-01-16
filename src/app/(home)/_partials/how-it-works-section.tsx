@@ -1,16 +1,16 @@
-import Image from 'next/image'
-import onboardingImage from '@/assets/onboarding.svg'
-
 const steps = [
   {
+    icon: '🎨',
     title: 'Escolha o tema',
     description: 'Selecione o tema do evento',
   },
   {
+    icon: '✏️',
     title: 'Personalize',
     description: 'Adicione os detalhes',
   },
   {
+    icon: '📤',
     title: 'Compartilhe',
     description: 'Envie para os convidados',
   },
@@ -30,21 +30,14 @@ export function HowItWorksSection() {
         </header>
 
         <div className="flex flex-col items-center gap-8">
-          <Image
-            src={onboardingImage}
-            alt="Ilustração de um monitor exibindo o processo de criação de convites"
-            width={400}
-            height={400}
-          />
-
           <ul className="grid gap-4 md:grid-cols-3 md:max-w-5xl md:mx-auto w-full">
-            {steps.map((step, index) => (
+            {steps.map(step => (
               <li
                 className="bg-white border border-zinc-200 p-6 rounded-md"
                 key={step.title}
               >
                 <div className="size-12 bg-zinc-200 flex items-center justify-center rounded-md mb-4">
-                  <span className="font-semibold text-lg">{index + 1}</span>
+                  <span className="font-semibold text-lg">{step.icon}</span>
                 </div>
 
                 <h3 className="text-xl text-zinc-900 font-semibold mb-0.5">
