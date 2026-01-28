@@ -1,8 +1,5 @@
-'use client'
-
-import { useState } from 'react'
+import * as Accordion from '@radix-ui/react-accordion'
 import { FaChevronDown } from 'react-icons/fa6'
-import { cn } from '@/lib/utils'
 
 const faqItems = [
   {
@@ -44,12 +41,6 @@ const faqItems = [
 ]
 
 export function FaqSection() {
-  const [openId, setOpenId] = useState<number | null>(null)
-
-  const toggleItem = (id: number) => {
-    setOpenId(openId === id ? null : id)
-  }
-
   return (
     <section className="py-20">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -63,42 +54,33 @@ export function FaqSection() {
           </p>
         </div>
 
-        <div className="space-y-2">
+        <Accordion.Root type="single" collapsible className="space-y-4">
           {faqItems.map(item => (
-            <div
+            <Accordion.Item
               key={item.id}
-              className="not-last:border-b not-last:border-zinc-200"
+              value={`item-${item.id}`}
+              className="bg-white rounded-lg border border-zinc-200 overflow-hidden"
             >
-              <button
-                type="button"
-                onClick={() => toggleItem(item.id)}
-                className="w-full py-4 px-0 flex items-center justify-between transition-colors text-left"
-              >
-                <span className="text-zinc-900 font-medium">
-                  {item.question}
-                </span>
+              <Accordion.Header>
+                <Accordion.Trigger className="w-full flex items-center justify-between p-4 text-left hover:bg-zinc-50 transition-colors group">
+                  <span className="text-lg font-semibold text-zinc-900 pr-4">
+                    {item.question}
+                  </span>
 
-                <FaChevronDown
-                  className={cn(
-                    'size-4 text-zinc-600 transition-transform duration-300 shrink-0 ml-4',
-                    openId === item.id && 'rotate-180',
-                  )}
-                />
-              </button>
-
-              <div
-                className={cn(
-                  'overflow-hidden transition-all duration-300 ease-in-out',
-                  openId === item.id
-                    ? 'max-h-96 opacity-100'
-                    : 'max-h-0 opacity-0',
-                )}
-              >
-                <div className="pb-4 px-0 text-zinc-600">{item.answer}</div>
-              </div>
-            </div>
+                  <FaChevronDown
+                    className="text-zinc-500 transition-transform duration-300 group-data-[state=open]:rotate-180 shrink-0"
+                    size={16}
+                  />
+                </Accordion.Trigger>
+              </Accordion.Header>
+              <Accordion.Content className="overflow-hidden data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp">
+                <div className="px-6 pb-6 text-zinc-600 leading-relaxed">
+                  {item.answer}
+                </div>
+              </Accordion.Content>
+            </Accordion.Item>
           ))}
-        </div>
+        </Accordion.Root>
       </div>
     </section>
   )

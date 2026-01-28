@@ -6,14 +6,6 @@ export function Footer() {
       <p className="text-zinc-500">
         © {currentYear} Convite Simples. Todos os direitos reservados.
       </p>
-
-      <a
-        className="text-zinc-500 hover:text-blue-600"
-        href="https://www.flaticon.com/free-icons/heart"
-        title="heart icons"
-      >
-        Heart icons created by Kiranshastry - Flaticon
-      </a>
     </footer>
   )
 }
