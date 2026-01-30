@@ -24,7 +24,7 @@ export async function Header() {
             <Button asChild variant="outline" size="sm">
               <Link href="/sign-in">
                 <FaArrowRightFromBracket />
-                Entra na plataforma
+                Fazer login
               </Link>
             </Button>
 
